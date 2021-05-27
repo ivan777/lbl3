@@ -5,14 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class lbl2 {
+public class lbl3 {
 
     public static void main(String[] args) throws FileNotFoundException, CloneNotSupportedException
     {   long start_time = System.currentTimeMillis();
 //       String route = "C:\\Users\\privalovie\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
 //         Graph Gor Graph12
         String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
-        int zz=0,i1 = 0;
+        int zz=0,i1 = 0,A = 0,B = 0,C = 0,D = 0;
         double summj1 = 0.0, summj2 = 0.0, summj3 = 0.0, summj4 = 0.0, summj5 = 0.0, summj5_5 = 0.0; //общее число ошибок в программе
         int[] array;
         double[][] data;
@@ -38,6 +38,21 @@ public class lbl2 {
                     i1++;}
             }
             fin.close();
+
+            System.out.println("ВВедите значения переменных: ");
+            Scanner inA = new Scanner(System.in);
+            System.out.print("A: ");
+            A = inA.nextInt();
+            Scanner inB = new Scanner(System.in);
+            System.out.print("B: ");
+            B = inB.nextInt();
+            Scanner inC = new Scanner(System.in);
+            System.out.print("C: ");
+            C = inC.nextInt();
+            Scanner inD = new Scanner(System.in);
+            System.out.print("D: ");
+            D = inD.nextInt();
+
             int z = array.length - 1; // Кол-во ошибок
             lobject l1 = new lobject();
             l1.ParamВ = 31.21; // В
