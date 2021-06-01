@@ -13,7 +13,7 @@ public class lbl3 {
 //         Graph Gor Graph12
         String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
         int A = 0,B = 0,C = 0,D = 0;
-        double lamda = 1.53; //уровень языка программирования
+        double lamda = 1.53; //уровень языка программирования ////λ
         int[] array;
         double[][] data;
 
