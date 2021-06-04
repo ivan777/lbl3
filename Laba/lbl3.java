@@ -14,12 +14,41 @@ public class lbl3 {
     {   long start_time = System.currentTimeMillis();
 //       String route = "C:\\Users\\privalovie\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
 //         Graph Gor Graph12
-        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl2.txt", str, str1;
-        int A = 20,B = 30,C = 10,D = 3, m = 30, v = 15;
-        double lamda = 1.53; //уровень языка программирования ////λ
-        int[] array;
+        String route = "F:\\YandexDisk\\Универ\\Конструирование\\labs\\lbl3.txt", str, str1, docsx;
+        int zz,i11 = 0, i1 = 0, A = 20,B = 30,C = 10,D = 3, m = 30, v = 15, r0 = 1000,arrayV = 0;
+        double lamda = 1.53, R_1 = 0.0, R_2 = 0.0, R_3 = 0.0, CAR_1 = 0.0, CAR_2 = 0.0, CAR_3 = 0.0; //уровень языка программирования ////λ
+        int[][] array;
         double[][] data;
+        try
+        {
 
+        FileReader finkol = new FileReader(route);
+        Scanner src1 = new Scanner(finkol); // Чтение из файла
+
+        while (src1.hasNext()) {
+            str1 = src1.nextLine();
+            i11++;}
+
+        finkol.close();
+        FileReader fin = new FileReader(route);
+        Scanner src = new Scanner(fin); // Чтение из файла
+
+        zz = i11+1;
+        array = new int[zz][2];
+
+        while (src.hasNext()) {
+                int i2 = 0;
+                str = src.nextLine();
+                if(str.length()!=0) {
+                    StringTokenizer st = new StringTokenizer(str, " ");
+                    while (st.hasMoreTokens()) {
+                        docsx = st.nextToken();
+                        array[i1][i2] = Integer.parseInt(docsx);
+                        i2++;}
+                    i1++;}
+        }
+
+        fin.close();
 //        System.out.println("Введите значения переменных: ");
 //        Scanner inA = new Scanner(System.in);
 //        System.out.print("A: ");
@@ -35,7 +64,7 @@ public class lbl3 {
 //        D = inD.nextInt();
 
         lobject l1 = new lobject();
-
+        data = new double[zz][10];
         //Первая задача
         l1.n2_1 = (A*B*C)+(D*A);//n2
         l1.V_1 = (l1.n2_1+2)*((log(l1.n2_1+2))/log(2));//V
@@ -54,6 +83,42 @@ public class lbl3 {
         l1.TK_2 = (3*l1.N_2)/(8*l1.m_2*l1.v_2);//Tk
         l1.B_2 = l1.V_2/3000;//B
         l1.TN_2 = l1.TK_2/(2*(log(l1.B_2)));//tn
+
+        for (int j = 0; j <= zz; j++) {
+
+            if (j == 0) {
+            data[j][0] = j; //Номер ошибки (i)
+            data[j][1] = r0; //Интервал  между ошибками (Xi, дни)
+            }else{
+                int arrayB = array[j-1][0];
+                arrayV = arrayV + array[j-1][1];
+
+                data[j][0] = j; //Номер
+                data[j][1] = arrayB; //B
+                data[j][2] = arrayV; //V
+
+                data[j][3] = data[j-1][1]*(1.001*(arrayV-CAR_1)); //R 1
+                data[j][4] = data[j-1][1]*(1.001*(arrayV-CAR_2)); //R 2
+                data[j][5] = data[j-1][1]*(1.001*(arrayV-CAR_3)); //R 3
+
+                data[j][6] = (arrayB/((1/l1.lamda)+(1/data[j-1][0]))); //C(λ,R) = 1/λ+1/R
+                data[j][7] = (arrayB/(1/(l1.lamda*data[j-1][0]))); //C(λ,R) = 1/(λ*R)
+                data[j][8] = (arrayB/(1/(l1.lamda+data[j-1][0]))); //C(λ,R) = 1/(λ+R)
+
+                //C(λ,R) = 1/λ+1/R
+                CAR_1 = CAR_1 + data[j][6];
+                R_1 = R_1 + data[j][3];
+
+                //C(λ,R) = 1/(λ*R)
+                CAR_2 = CAR_2 + data[j][7];
+                R_2 = R_2 + data[j][4];
+
+                //C(λ,R) = 1/(λ+R)
+                CAR_3 = CAR_3 + data[j][8];
+                R_3 = R_3 + data[j][5];
+
+           }
+        }
 
 //            System.out.println("============================================");
 //            System.out.println("============================================");
@@ -86,10 +151,17 @@ public class lbl3 {
         long stop_time = System.currentTimeMillis();
         long run_time = stop_time - start_time;
         output(l1,run_time);
+        }
+
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static class lobject implements Cloneable
-    {double lamda, n2_1, V_1, B_1, k_2, i_2, K_2, N_2, V_2, P_2, TK_2, B_2, TN_2, m_2, v_2;}
+    {double lamda, n2_1, V_1, B_1, k_2, i_2, K_2, N_2, V_2, P_2, TK_2, B_2, TN_2, m_2, v_2;
+        double[][] data;}
 
     public static void output(lobject l1, long run_time)
     {
