@@ -49,22 +49,22 @@ public class lbl3 {
         }
 
         fin.close();
-//        System.out.println("Введите значения переменных: ");
-//        Scanner inA = new Scanner(System.in);
-//        System.out.print("A: ");
-//        A = inA.nextInt();
-//        Scanner inB = new Scanner(System.in);
-//        System.out.print("B: ");
-//        B = inB.nextInt();
-//        Scanner inC = new Scanner(System.in);
-//        System.out.print("C: ");
-//        C = inC.nextInt();
-//        Scanner inD = new Scanner(System.in);
-//        System.out.print("D: ");
-//        D = inD.nextInt();
+        System.out.println("Введите значения переменных: ");
+        Scanner inA = new Scanner(System.in);
+        System.out.print("A: ");
+        A = inA.nextInt();
+        Scanner inB = new Scanner(System.in);
+        System.out.print("B: ");
+        B = inB.nextInt();
+        Scanner inC = new Scanner(System.in);
+        System.out.print("C: ");
+        C = inC.nextInt();
+        Scanner inD = new Scanner(System.in);
+        System.out.print("D: ");
+        D = inD.nextInt();
 
         lobject l1 = new lobject();
-        data = new double[zz][10];
+        data = new double[zz+1][9];
         //Первая задача
         l1.n2_1 = (A*B*C)+(D*A);//n2
         l1.V_1 = (l1.n2_1+2)*((log(l1.n2_1+2))/log(2));//V
@@ -122,6 +122,11 @@ public class lbl3 {
 
            }
         }
+            data[zz][0] = zz; //Номер
+            data[zz][3] = data[zz-1][3]*(1+0.001*(arrayV-CAR_1)); //R 1
+            data[zz][4] = data[zz-1][4]*(1+0.001*(arrayV-CAR_2)); //R 2
+            data[zz][5] = data[zz-1][5]*(1+0.001*(arrayV-CAR_3)); //R 3
+
             l1.data = data;
 
         long stop_time = System.currentTimeMillis();
@@ -191,7 +196,7 @@ public class lbl3 {
         System.out.print("  C(λ,R)|");
         System.out.println();
 
-        for (int i = 0; i < zz; i++) {
+        for (int i = 0; i <= zz; i++) {
             System.out.printf("r%2.0f|", l1.data[i][0]);
                 System.out.print("    ");
                 System.out.printf("%2.2f|", l1.data[i][3]);//R
@@ -216,7 +221,7 @@ public class lbl3 {
         System.out.print("  C(λ,R)|");
         System.out.println();
 
-        for (int i = 0; i < zz; i++) {
+        for (int i = 0; i <= zz; i++) {
             System.out.printf("r%2.0f|", l1.data[i][0]);
             System.out.print("    ");
             System.out.printf("%2.2f|", l1.data[i][4]);//R
@@ -241,7 +246,7 @@ public class lbl3 {
         System.out.print("  C(λ,R)|");
         System.out.println();
 
-        for (int i = 0; i < zz; i++) {
+        for (int i = 0; i <= zz; i++) {
             System.out.printf("r%2.0f|", l1.data[i][0]);
             System.out.print("    ");
             System.out.printf("%2.2f|", l1.data[i][5]);//R
