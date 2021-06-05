@@ -97,7 +97,7 @@ public class lbl3 {
 
                 data[j][0] = j; //Номер
                 data[j][1] = arrayB; //B
-                data[j][2] = arrayV; //V
+                data[j][2] = array[j-1][1]; //V
 
                 data[j][6] = (arrayB/((1/l1.lamda)+(1/data[j-1][3]))); //C(λ,R) = 1/λ+1/R
                 data[j][7] = (arrayB/(1/(l1.lamda*data[j-1][4]))); //C(λ,R) = 1/(λ*R)
@@ -200,7 +200,7 @@ public class lbl3 {
                 System.out.print("    ");
                 System.out.printf("%2.2f|", l1.data[i][2]);//V
                 System.out.print("    ");
-                System.out.printf("%2.2f|", l1.data[i][6]);//C(λ,R)
+                System.out.printf("%2.4f|", l1.data[i][6]);//C(λ,R)
             System.out.println();
         }
         System.out.println("============================================");
